@@ -1,0 +1,130 @@
+<!--
+/**
+* @category    Ceicom
+* @package     Ceicom_CustomerAccount
+* @copyright   Copyright (c) 2014 Ceicom (http://ceicom.com.br/)
+*/
+-->
+<config>
+    <modules>
+        <Ceicom_CustomerAccount>
+            <version>1.0.0</version>
+        </Ceicom_CustomerAccount>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <ceicom_customeraccount before="Mage_Adminhtml">Ceicom_CustomerAccount_Adminhtml</ceicom_customeraccount>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <global>
+        <blocks>
+            <ceicom_customeraccount>
+                <class>Ceicom_CustomerAccount_Block</class>
+            </ceicom_customeraccount>
+            <customer>
+                <rewrite>
+                    <address_edit>Ceicom_CustomerAccount_Block_Address_Edit</address_edit>
+                    <widget_taxvat>Ceicom_CustomerAccount_Block_Taxvat</widget_taxvat>
+                    <widget_dob>Ceicom_CustomerAccount_Block_Dob</widget_dob>
+                    <widget_gender>Ceicom_CustomerAccount_Block_Gender</widget_gender>
+                </rewrite>
+            </customer>
+            <adminhtml>
+                <rewrite>
+                    <customer_edit_tab_account>Ceicom_CustomerAccount_Block_Account</customer_edit_tab_account>
+                    <!--<customer_edit_tab_addresses>Ceicom_CustomerAccount_Block_Addresses</customer_edit_tab_addresses>-->
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <models>
+            <ceicom_customeraccount>
+                <class>Ceicom_CustomerAccount_Model</class>
+            </ceicom_customeraccount>
+        </models>
+        <helpers>
+            <ceicom_customeraccount>
+                <class>Ceicom_CustomerAccount_Helper</class>
+            </ceicom_customeraccount>
+        </helpers>
+        <events>
+            <controller_action_predispatch_customer_account_createpost>
+                <observers>
+                    <mymodulename>
+                        <type>singleton</type>
+                        <class>Ceicom_CustomerAccount_Model_Observer</class>
+                        <method>alterCustomerAccount</method>
+                    </mymodulename>
+                </observers>
+            </controller_action_predispatch_customer_account_createpost>
+            <admin_system_config_changed_section_customeraccount>
+                <observers>
+                    <modulename>
+                        <type>singleton</type>
+                        <class>Ceicom_CustomerAccount_Model_Observer</class>
+                        <method>observersection</method>
+                    </modulename>
+                </observers>
+            </admin_system_config_changed_section_customeraccount>
+        </events>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <ceicom_customeraccount>
+                    <file>ceicom/customeraccount.xml</file>
+                </ceicom_customeraccount>
+            </updates>
+        </layout>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <ceicom_customeraccount before="Mage_Customer">Ceicom_CustomerAccount_Frontend</ceicom_customeraccount>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <ceicom_customeraccount>
+                    <file>ceicom/customeraccount.xml</file>
+                </ceicom_customeraccount>
+            </updates>
+        </layout>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <customeraccount>
+                                            <title>Customer Account</title>
+                                        </customeraccount>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <default>
+        <customeraccount>
+            <customeraccount_options>
+                <taxvat_visible>0</taxvat_visible>
+                <taxvat_required>1</taxvat_required>
+            </customeraccount_options>
+        </customeraccount>
+    </default>
+</config>

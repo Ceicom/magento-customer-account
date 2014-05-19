@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    Ceicom
+* @package     Ceicom_CustomerAccount
+* @copyright   Copyright (c) 2014 Ceicom (http://ceicom.com.br/)
+*/
+-->
+<config>
+    <modules>
+        <Ceicom_CustomerAccount>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+			   <Mage_Customer/>
+			</depends>
+        </Ceicom_CustomerAccount>
+    </modules>
+</config>

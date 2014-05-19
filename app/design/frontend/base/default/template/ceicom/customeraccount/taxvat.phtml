@@ -1,0 +1,42 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $required = $this->isRequired(); ?>
+<label for="<?php echo $this->getFieldId('taxvat')?>"<?php if ($required) echo ' class="required"' ?>><?php if ($required) echo '<em>*</em>' ?><?php echo $this->__('Tax/VAT number') ?></label>
+<div class="input-box">
+	<input type="text" maxlength="18"
+	id="<?php echo $this->getFieldId('taxvatUI')?>" 
+	name="<?php echo $this->getFieldName('taxvatUI')?>" 
+	data-type='taxvat'
+	class="input-text <?php if ($required) echo 'validate-taxvat'; ?><?php echo $this->helper('customer/address')->getAttributeValidationClass('taxvatUI') ?>" 
+	value="<?php echo $this->escapeHtml($this->getTaxvat()) ?>" <?php if(!$this->isEditable()) echo 'disabled="disabled"' ?>/>
+
+    <input type="hidden" maxlength="14" id="<?php echo $this->getFieldId('taxvat')?>" name="<?php echo $this->getFieldName('taxvat')?>" data-type='taxvat' class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('taxvat') ?>" value="<?php echo $this->escapeHtml($this->getTaxvat()) ?>" title="<?php echo $this->__('Tax/VAT number') ?>" <?php echo $this->getFieldParams() ?> />
+</div>
+<script type="text/javascript">
+	// var v = new CustomerAccountForm();
+	// v.initialize();
+</script>
