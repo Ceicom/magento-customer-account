@@ -25,6 +25,11 @@ class Ceicom_CustomerAccount_Block_Taxvat extends Mage_Customer_Block_Widget_Abs
 
     public function isEditable()
     {
-        return (bool)Mage::Helper('ceicom_customeraccount')->isTaxvatEditable();
+        $AtionName = Mage::app()->getRequest()->getActionName();
+        if($AtionName == 'create'){
+            return true;
+        }else{
+            return (bool)Mage::Helper('ceicom_customeraccount')->isTaxvatEditable();
+        }
     }
 }
