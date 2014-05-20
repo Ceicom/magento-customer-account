@@ -38,7 +38,6 @@
             <adminhtml>
                 <rewrite>
                     <customer_edit_tab_account>Ceicom_CustomerAccount_Block_Account</customer_edit_tab_account>
-                    <!--<customer_edit_tab_addresses>Ceicom_CustomerAccount_Block_Addresses</customer_edit_tab_addresses>-->
                 </rewrite>
             </adminhtml>
         </blocks>
