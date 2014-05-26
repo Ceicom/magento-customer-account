@@ -10,7 +10,7 @@
     <modules>
         <Ceicom_CustomerAccount>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
             <depends>
 			   <Mage_Customer/>
 			</depends>
