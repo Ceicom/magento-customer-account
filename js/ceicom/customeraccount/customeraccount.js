@@ -44,6 +44,7 @@ CustomerAccount.prototype.event = function() {
         });
     }).on('blur', function() {
         var _this = jQuery(this);
+        console.log(customeraccount.customMasks.taxvat(this));
         _this.mask(customeraccount.customMasks.taxvat(this));
         jQuery('[name*="taxvat"][type="hidden"]').val(_this.val().replace(/[^0-9]/g, ''));
     });
@@ -64,7 +65,7 @@ CustomerAccount.prototype.customMasks = {
         });
     }, 
     taxvat: function (taxvat) {
-        return jQuery.trim(taxvat.value).length < 12 ? '999.999.999-99' : '99.999.999/9999-99';
+        return jQuery.trim(taxvat.value.replace(/[^0-9]/g, '')).length < 12 ? '999.999.999-99' : '99.999.999/9999-99';
     }, 
 };
 CustomerAccount.prototype.autoComplete = function() {

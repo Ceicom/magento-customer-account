@@ -34,7 +34,7 @@
 	class="input-text <?php if ($required) echo 'validate-taxvat'; ?><?php echo $this->helper('customer/address')->getAttributeValidationClass('taxvatUI') ?>" 
 	value="<?php echo $this->escapeHtml($this->getTaxvat()) ?>" <?php if(!$this->isEditable()) echo 'disabled="disabled"' ?>/>
 
-    <input type="hidden" maxlength="14" id="<?php echo $this->getFieldId('taxvat')?>" name="<?php echo $this->getFieldName('taxvat')?>" data-type='taxvat' class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('taxvat') ?>" value="<?php echo $this->escapeHtml($this->getTaxvat()) ?>" title="<?php echo $this->__('Tax/VAT number') ?>" <?php echo $this->getFieldParams() ?> />
+    <input type="hidden" maxlength="14" id="<?php echo $this->getFieldId('taxvat')?>" name="<?php echo $this->getFieldName('taxvat')?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('taxvat') ?>" value="<?php echo $this->escapeHtml($this->getTaxvat()) ?>" title="<?php echo $this->__('Tax/VAT number') ?>" <?php echo $this->getFieldParams() ?> />
 </div>
 <script type="text/javascript">
 	// var v = new CustomerAccountForm();
