@@ -8,7 +8,7 @@
 <config>
     <modules>
         <Ceicom_CustomerAccount>
-            <version>0.1.5</version>
+            <version>0.1.6</version>
         </Ceicom_CustomerAccount>
     </modules>
     <admin>
@@ -41,6 +41,13 @@
                 </rewrite>
             </adminhtml>
         </blocks>
+        <resources>
+            <customeraccount_setup>
+                <setup>
+                    <module>Ceicom_CustomerAccount</module>
+                </setup>
+            </customeraccount_setup>
+        </resources>
         <models>
             <ceicom_customeraccount>
                 <class>Ceicom_CustomerAccount_Model</class>
