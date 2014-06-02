@@ -41,6 +41,13 @@
                 </rewrite>
             </adminhtml>
         </blocks>
+        <resources>
+            <customeraccount_setup>
+                <setup>
+                    <module>Ceicom_CustomerAccount</module>
+                </setup>
+            </customeraccount_setup>
+        </resources>
         <models>
             <ceicom_customeraccount>
                 <class>Ceicom_CustomerAccount_Model</class>
