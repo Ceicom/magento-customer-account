@@ -71,7 +71,7 @@
 				            <show_in_website>1</show_in_website>
 				            <show_in_store>1</show_in_store>
 				        </gender_required>
-				        <complemento_required>
+				        <adreress_complemento_required>
 				            <label>Exigir Complemento</label>
 				            <comment>Obriga o preenchimento do campo Complemento</comment>
 				            <frontend_type>select</frontend_type>
@@ -80,7 +80,7 @@
 				            <show_in_default>1</show_in_default>
 				            <show_in_website>1</show_in_website>
 				            <show_in_store>1</show_in_store>
-				        </complemento_required>
+				        </adreress_complemento_required>
 				    </fields>
                 </customeraccount_options>
             </groups>

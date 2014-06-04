@@ -7,7 +7,7 @@ class Ceicom_CustomerAccount_Helper_Data extends Mage_Core_Helper_Abstract
 	const XML_PATH_TAXVAT_REQUIRED          = 'customeraccount/customeraccount_options/taxvat_required';
 	const XML_PATH_DOB_REQUIRED             = 'customeraccount/customeraccount_options/dob_required';
 	const XML_PATH_GENDER_REQUIRED          = 'customeraccount/customeraccount_options/gender_required';
-    const XML_PATH_COMPLEMENT_REQUIRED      = 'customeraccount/customeraccount_options/complement_required';
+    const XML_PATH_COMPLEMENT_REQUIRED      = 'customeraccount/customeraccount_options/adreress_complemento_required';
 
     const MESSAGE_TAXVAT_EXIST              = 'O CPF ou CNPJ informado já é cadastrado.';
 
