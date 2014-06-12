@@ -13,7 +13,15 @@ class Ceicom_CustomerAccount_Helper_Data extends Mage_Core_Helper_Abstract
 
 	public function getConfig($path, $store = null)
 	{
-		return (bool)Mage::getStoreConfig($path, $store);
+		$result = Mage::getStoreConfig($path, $store);
+        if(is_numeric($result)) {
+            return (bool)Mage::getStoreConfig($path, $store);
+        }else{
+            if($result == 'opt') {
+                return false;
+            }
+            return Mage::getStoreConfig($path, $store);
+        }
 	}
 	
     public function isTaxvatEditable($store = null)
