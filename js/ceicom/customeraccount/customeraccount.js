@@ -81,7 +81,7 @@ CustomerAccount.prototype.autoComplete = function() {
         if ((jQuery.trim(postcode.val()).length == 9) && (jQuery.trim(postcode.val()) != postcode.data('data-postcode'))) {
             postcode.data('data-postcode', jQuery.trim(postcode.val()));
             jQuery.ajax({
-                url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fm.correios.com.br%2Fmovel%2FbuscaCepConfirma.do%3FcepEntrada%3D" + jQuery.trim(postcode.val()).replace('-', '') + "%26metodo%3DbuscarCep%22%20and%20xpath%3D'%2F%2Fdiv%5Bcontains(%40class%2C%22caixacampobranco%22)%5D'&format=json&callback=",
+                url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fm.correios.com.br%2Fmovel%2FbuscaCepConfirma.do%3FcepEntrada%3D" + jQuery.trim(postcode.val()).replace('-', '') + "%26metodo%3DbuscarCep%22%20and%20xpath%3D'%2F%2Fdiv%5Bcontains(%40class%2C%22caixacampobranco%22)%5D'&format=json&callback=",
                 beforeSend: function() {
                     customeraccount.elements.postcode
                         .parent()
