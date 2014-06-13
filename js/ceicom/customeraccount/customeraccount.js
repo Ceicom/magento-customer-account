@@ -17,7 +17,8 @@ CustomerAccount.prototype.getElements = function() {
         birthYear: jQuery('[data-type="year"]'),
         phone: jQuery('[data-type="phone"]'), 
         postcode: jQuery('[data-type="postcode"]'), 
-        taxvat: jQuery('[data-type="taxvat"]')
+        taxvat: jQuery('[data-type="taxvat"]'),
+        number: jQuery('[data-type="number"]')
     };
 };
 CustomerAccount.prototype.mask = function() {
@@ -52,6 +53,11 @@ CustomerAccount.prototype.event = function() {
         if(jQuery(this).val().length >= 9){
             customeraccount.autoComplete();
         }
+    });
+    this.elements.number.on("keyup blur focus", function(e) {
+        e.preventDefault();
+        var expre = /[^\d]/g;
+        jQuery(this).val(jQuery(this).val().replace(expre,''));
     });
 };
 CustomerAccount.prototype.customMasks = {

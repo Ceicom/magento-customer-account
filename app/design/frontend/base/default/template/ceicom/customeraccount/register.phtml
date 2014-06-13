@@ -121,14 +121,14 @@
                 <li class="wide">
                     <label for="address_number" class="required"><em>*</em><?php echo $this->__('Number') ?></label>
                     <div class="input-box">
-                        <input type="text" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(2)) ?>" title="<?php echo $this->__('Number') ?>" id="address_number" class="input-text <?php echo $_streetValidationClass ?>" />
+                        <input type="text" data-type="number" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(2)) ?>" title="<?php echo $this->__('Number') ?>" id="address_number" class="input-text <?php echo $_streetValidationClass ?>" />
                     </div>
                 </li>
                 <li class="wide">
                 <?php $complementRequired = (bool)Mage::helper('ceicom_customeraccount')->isComplementRequired()?>
                     <label for="address_Complement" <?php if($complementRequired) echo 'class="required"'; ?>><?php if($complementRequired) echo '<em>*</em>'; ?><?php echo $this->__('Complemento') ?></label>
                     <div class="input-box">
-                        <input type="text" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(3)) ?>" title="<?php echo $this->__('Complemento') ?>" id="address_Complement" class="input-text <?php echo $_streetValidationClass ?>" />
+                        <input type="text" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(3)) ?>" title="<?php echo $this->__('Complemento') ?>" id="address_Complement" class="input-text <?php if($complementRequired) echo $_streetValidationClass ?>" />
                     </div>
                 </li>
                 <li class="wide">
