@@ -48,16 +48,16 @@ class Ceicom_CustomerAccount_Frontend_AccountController extends Mage_Customer_Ac
             $customer = $this->_getSession()->getCustomer();
 
             /** @var $customerForm Mage_Customer_Model_Form */
-            $customerForm = $this->_getModel('customer/form');
+            $customerForm = Mage::getModel('customer/form');
             $customerForm->setFormCode('customer_account_edit')
                 ->setEntity($customer);
 
             /*
                 Init Ceicom custom code
             */
-            if (!mage::helper('ceicom_customeraccount')->taxvatExist($this->getRequest()->getParam('taxvat'),$customerForm->getEntity()->getData('entity_id'))) {
+            if (!Mage::helper('ceicom_customeraccount')->taxvatExist($this->getRequest()->getParam('taxvat'),$customerForm->getEntity()->getData('entity_id'))) {
                 $this->_getSession()->setCustomerFormData($this->getRequest()->getPost())
-                    ->addError(mage::helper('ceicom_customeraccount')->getMessageTaxvatExist());
+                    ->addError(Mage::helper('ceicom_customeraccount')->getMessageTaxvatExist());
                 $this->_redirect('*/*/edit');
                 return;
             }
