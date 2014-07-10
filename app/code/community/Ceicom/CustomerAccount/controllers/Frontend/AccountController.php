@@ -86,7 +86,7 @@ class Ceicom_CustomerAccount_Frontend_AccountController extends Mage_Customer_Ac
                     $confPass   = $this->getRequest()->getPost('confirmation');
 
                     $oldPass = $this->_getSession()->getCustomer()->getPasswordHash();
-                    if ( $this->_getHelper('core/string')->strpos($oldPass, ':')) {
+                    if ( Mage::helper('core/string')->strpos($oldPass, ':')) {
                         list($_salt, $salt) = explode(':', $oldPass);
                     } else {
                         $salt = false;
