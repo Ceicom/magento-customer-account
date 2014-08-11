@@ -205,6 +205,8 @@
         new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
         <?php endif; ?>
         CustomerAccount.create();
+        var billingRegionUpdater = new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+        var regionJson = billingRegionUpdater;
     //]]>
     </script>
 </div>
