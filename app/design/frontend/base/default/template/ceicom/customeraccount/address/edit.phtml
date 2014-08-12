@@ -180,9 +180,8 @@
 <script type="text/javascript">
     //<![CDATA[
     var dataForm = new VarienForm('form-validate', true);
-    new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
-
+    var billingRegionUpdater = new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+    var regionJson = billingRegionUpdater;
     CustomerAccount.create();
-
     //]]>
 </script>

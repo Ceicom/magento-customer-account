@@ -8,7 +8,7 @@
 <config>
     <modules>
         <Ceicom_CustomerAccount>
-            <version>0.2.10</version>
+            <version>0.2.11</version>
         </Ceicom_CustomerAccount>
     </modules>
     <admin>
