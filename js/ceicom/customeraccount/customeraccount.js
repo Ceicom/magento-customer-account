@@ -117,8 +117,19 @@ CustomerAccount.prototype.autoComplete = function() {
                             address[results.div.span[i].content] = results.div.span[i + 1].content;
                             i++;
                         }
-                        var addressStreet1 = address['Logradouro:'];
-                        var addressStreet2 = address['Bairro:'];
+                        var addressStreet1 = "";
+                        var addressStreet2 = "";
+
+                        if ('Logradouro:' in address) {
+                            addressStreet1 = address['Logradouro:'];
+                        } else if ('Endereço:' in address) {
+                            addressStreet1 = address['Endereço:'];
+                        }
+
+                        if ('Bairro:' in address) {
+                            addressStreet2 = address['Bairro:'];
+                        }
+
                         // Set street
                         if (addressStreet1) {
                             street1.val(addressStreet1);
@@ -128,11 +139,32 @@ CustomerAccount.prototype.autoComplete = function() {
                             street2.val(addressStreet2);
                             customeraccount.removeValidationAdvice(street2);
                         }
+
                         // Set city and region
-                        var cityRegion = address['Localidade / UF:'].split(' /');
-                        if (jQuery.trim(cityRegion[0])) {
-                            city.val(jQuery.trim(cityRegion[0]));
-                            customeraccount.removeValidationAdvice(city);
+                        var cityRegion = null;
+
+                        if ('Localidade / UF:' in address) {
+                            cityRegion = address['Localidade / UF:'].split(' /');
+                        } else if ('Localidade/UF:' in address) {
+                            cityRegion = address['Localidade/UF:'].split('/');
+                        }                        
+
+                        if (cityRegion) {
+                            if (jQuery.trim(cityRegion[0])) {
+                                city.val(jQuery.trim(cityRegion[0]));
+                                customeraccount.removeValidationAdvice(city);
+                            }
+
+                            jQuery.each(regionJson.regions.BR, function(key, item) {
+                                if (item.code == jQuery.trim(cityRegion[1])) {
+                                    region
+                                        .children('option[value="' + key + '"]')
+                                        .prop('selected', 'selected');
+                                    customeraccount.removeValidationAdvice(region);
+
+                                    return false;
+                                }
+                            });
                         }
                     } else {
                         console.log('not found');
