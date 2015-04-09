@@ -10,10 +10,10 @@
     <modules>
         <Ceicom_CustomerAccount>
             <active>true</active>
-            <codePool>community</codePool>
+            <codePool>local</codePool>
             <depends>
-			   <Mage_Customer/>
-			</depends>
+                <Mage_Customer/>
+            </depends>
         </Ceicom_CustomerAccount>
     </modules>
 </config>
