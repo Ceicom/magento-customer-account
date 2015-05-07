@@ -1,4 +1,4 @@
-<!--
+
 /**
 * @category    Ceicom
 * @package     Ceicom_CustomerAccount
@@ -8,7 +8,7 @@
 <config>
     <modules>
         <Ceicom_CustomerAccount>
-            <version>0.2.12</version>
+            <version>0.2.13<version>
         </Ceicom_CustomerAccount>
     </modules>
     <admin>
