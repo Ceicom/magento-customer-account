@@ -9,10 +9,11 @@ CustomerAccount.prototype.init = function () {
     this.mask();
     this.event();
     this.validation();
-	this.setTaxvatValue();
+    this.setTaxvatValue();
+
 };
 CustomerAccount.prototype.setTaxvatValue = function() {
-	jQuery('[name*="taxvat"][type="hidden"]').val(jQuery('[name*="taxvatUI"]').val().replace(/[^0-9]/g, ''));
+    jQuery('[name*="taxvat"][type="hidden"]').val(jQuery('[name*="taxvatUI"]').val().replace(/[^0-9]/g, ''));
     console.log("Valor tax vat", jQuery('[name*="taxvat"][type="hidden"]').val());
 };
 CustomerAccount.prototype.getElements = function() {
@@ -20,8 +21,8 @@ CustomerAccount.prototype.getElements = function() {
         birthDay: jQuery('[data-type="day"]'),
         birthMonth: jQuery('[data-type="month"]'),
         birthYear: jQuery('[data-type="year"]'),
-        phone: jQuery('[data-type="phone"]'), 
-        postcode: jQuery('[data-type="postcode"]'), 
+        phone: jQuery('[data-type="phone"]'),
+        postcode: jQuery('[data-type="postcode"]'),
         taxvat: jQuery('[data-type="taxvat"]'),
         number: jQuery('[data-type="number"]')
     };
@@ -74,10 +75,10 @@ CustomerAccount.prototype.customMasks = {
                 field.mask(mask, options);
            }
         });
-    }, 
+    },
     taxvat: function (taxvat) {
         return jQuery.trim(taxvat.value.replace(/[^0-9]/g, '')).length < 12 ? '999.999.999-99' : '99.999.999/9999-99';
-    }, 
+    },
 };
 CustomerAccount.prototype.autoComplete = function() {
     var customeraccount = this;
@@ -92,7 +93,7 @@ CustomerAccount.prototype.autoComplete = function() {
         if ((jQuery.trim(postcode.val()).length == 9) && (jQuery.trim(postcode.val()) != postcode.data('data-postcode'))) {
             postcode.data('data-postcode', jQuery.trim(postcode.val()));
             jQuery.ajax({
-                url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fm.correios.com.br%2Fmovel%2FbuscaCepConfirma.do%3FcepEntrada%3D" + jQuery.trim(postcode.val()).replace('-', '') + "%26metodo%3DbuscarCep%22%20and%20xpath%3D'%2F%2Fdiv%5Bcontains(%40class%2C%22caixacampobranco%22)%5D'&format=json&callback=",
+                url: "http://api.postmon.com.br/v1/cep/" + jQuery.trim(postcode.val()).replace('-', ''),
                 beforeSend: function() {
                     customeraccount.elements.postcode
                         .parent()
@@ -115,24 +116,25 @@ CustomerAccount.prototype.autoComplete = function() {
                         .prop('selected', 'selected');
                 },
                 success: function(data) {
-                    var results = data.query.results;
+                    var results = data;
                     var address = [];
                     if (results) {
-                        for (var i = 0; i < results.div.span.length; i++) {
-                            address[results.div.span[i].content] = results.div.span[i + 1].content;
-                            i++;
-                        }
+                      address = data;
+                        // for (var i = 0; i < results.div.span.length; i++) {
+                        //     address[results.div.span[i].content] = results.div.span[i + 1].content;
+                        //     i++;
+                        // }
                         var addressStreet1 = "";
                         var addressStreet2 = "";
 
-                        if ('Logradouro:' in address) {
-                            addressStreet1 = address['Logradouro:'];
-                        } else if ('Endereço:' in address) {
-                            addressStreet1 = address['Endereço:'];
+                        console.log(address);
+
+                        if ('logradouro' in address) {
+                            addressStreet1 = address.logradouro;
                         }
 
-                        if ('Bairro:' in address) {
-                            addressStreet2 = address['Bairro:'];
+                        if ('bairro' in address) {
+                            addressStreet2 = address.bairro;
                         }
 
                         // Set street
@@ -148,11 +150,13 @@ CustomerAccount.prototype.autoComplete = function() {
                         // Set city and region
                         var cityRegion = null;
 
-                        if ('Localidade / UF:' in address) {
-                            cityRegion = address['Localidade / UF:'].split(' /');
-                        } else if ('Localidade/UF:' in address) {
-                            cityRegion = address['Localidade/UF:'].split('/');
-                        }                        
+                        if ('cidade' in address) {
+                            cityRegion = address.cidade.split(' /');
+                        }
+
+                        if ('estado' in address) {
+                            estado = address.estado;
+                        }
 
                         if (cityRegion) {
                             if (jQuery.trim(cityRegion[0])) {
@@ -161,7 +165,7 @@ CustomerAccount.prototype.autoComplete = function() {
                             }
 
                             jQuery.each(regionJson.regions.BR, function(key, item) {
-                                if (item.code == jQuery.trim(cityRegion[1])) {
+                                if (item.code == jQuery.trim(estado)) {
                                     region
                                         .children('option[value="' + key + '"]')
                                         .prop('selected', 'selected');
@@ -184,7 +188,7 @@ CustomerAccount.prototype.autoComplete = function() {
                     region.removeAttr('disabled');
                 }
             });
-        } 
+        }
     });
 };
 CustomerAccount.prototype.removeValidationAdvice = function(el) {
@@ -211,7 +215,7 @@ CustomerAccount.prototype.validation = function() {
     });
 };
 CustomerAccount.prototype.isTaxvat = function(val) {
-    
+
     if (val.length == 14) {
 
         val = val.replace(/[^\d]+/g, '');
