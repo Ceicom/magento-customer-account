@@ -13,8 +13,10 @@ CustomerAccount.prototype.init = function () {
 
 };
 CustomerAccount.prototype.setTaxvatValue = function() {
-    jQuery('[name*="taxvat"][type="hidden"]').val(jQuery('[name*="taxvatUI"]').val().replace(/[^0-9]/g, ''));
-    console.log("Valor tax vat", jQuery('[name*="taxvat"][type="hidden"]').val());
+  var $taxvat = jQuery('[name*="taxvat"][type="hidden"]');
+    if( $taxvat.length > 0) {
+      $taxvat.val(jQuery('[name*="taxvatUI"]').val().replace(/[^0-9]/g, ''));
+    }
 };
 CustomerAccount.prototype.getElements = function() {
     this.elements = {
