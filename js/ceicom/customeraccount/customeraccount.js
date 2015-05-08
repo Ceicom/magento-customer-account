@@ -13,9 +13,9 @@ CustomerAccount.prototype.init = function () {
 
 };
 CustomerAccount.prototype.setTaxvatValue = function() {
-  var $taxvat = jQuery('[name*="taxvat"][type="hidden"]');
-    if( $taxvat.length > 0) {
-      $taxvat.val(jQuery('[name*="taxvatUI"]').val().replace(/[^0-9]/g, ''));
+    var taxvat = jQuery('[name*="taxvat"][type="hidden"]');
+    if(taxvat.length > 0) {
+      taxvat.val(jQuery('[name*="taxvatUI"]').val().replace(/[^0-9]/g, ''));
     }
 };
 CustomerAccount.prototype.getElements = function() {
