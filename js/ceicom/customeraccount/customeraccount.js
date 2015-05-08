@@ -93,7 +93,7 @@ CustomerAccount.prototype.autoComplete = function() {
         if ((jQuery.trim(postcode.val()).length == 9) && (jQuery.trim(postcode.val()) != postcode.data('data-postcode'))) {
             postcode.data('data-postcode', jQuery.trim(postcode.val()));
             jQuery.ajax({
-                url: "http://api.postmon.com.br/v1/cep/" + jQuery.trim(postcode.val()).replace('-', ''),
+                url: "https://api.postmon.com.br/v1/cep/" + jQuery.trim(postcode.val()).replace('-', ''),
                 beforeSend: function() {
                     customeraccount.elements.postcode
                         .parent()
